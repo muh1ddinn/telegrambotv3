@@ -20,11 +20,12 @@ jobs:
       with:
         go-version: '1.20'
 
-    - name: Install Dependencies
-      run: go mod tidy
+    - name: Initialize Go module
+      run: go mod init timer
 
     - name: Build
       run: go build -v ./...
 
     - name: Test
       run: go test -v ./...
+
