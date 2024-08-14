@@ -5,7 +5,6 @@ import (
 	"testing"
 
 	"timer/model"
-	"timer/teleram"
 
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
@@ -16,7 +15,6 @@ func TestTextt(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	// Mock the API response
 	mockResponse := `{
 		"region": "Toshkent",
 		"date": "2024-08-14",
@@ -39,7 +37,7 @@ func TestTextt(t *testing.T) {
 		httpmock.NewStringResponder(200, mockResponse))
 
 	// Call the function
-	nomoztime, err := teleram.Textt("Toshkent")
+	nomoztime, err := Textt("Toshkent")
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -74,7 +72,7 @@ func TestTextt_Error(t *testing.T) {
 		httpmock.NewErrorResponder(fmt.Errorf("simulated error")))
 
 	// Call the function
-	nomoztime, err := teleram.Textt("Toshkent")
+	nomoztime, err := Textt("Toshkent")
 	if err == nil {
 		t.Fatalf("expected error, got nil")
 	}
